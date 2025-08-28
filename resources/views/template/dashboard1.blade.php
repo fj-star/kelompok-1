@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <!-- <div class="card-group">
+    <div class="card-group">
   <div class="card">
     <img src="https://i.pinimg.com/1200x/b4/d2/b0/b4d2b038563748bc7b5261209f716e2c.jpg" class="card-img-top" alt="...">
     <div class="card-body">
@@ -28,5 +28,5 @@
       <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
     </div>
   </div>
-</div> -->
+</div>
 @endsection
