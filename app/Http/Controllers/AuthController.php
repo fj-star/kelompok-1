@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -26,7 +28,6 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $request->session()->put('user_id', Auth::user()->id);
 
-            // Arahkan ke dashboard umum, bukan hanya admin
             return redirect()->route('dashboard');
         }
 
@@ -34,6 +35,44 @@ class AuthController extends Controller
             'email' => 'Login gagal, periksa kembali email dan password.'
         ])->onlyInput('email');
     }
+    
+    // --- Tambahan untuk Registrasi ---
+    
+    /**
+     * Tampilkan halaman registrasi.
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.registrasi');
+    }
+
+    /**
+     * Tangani proses registrasi pengguna baru.
+     */
+    public function register(Request $request)
+    {
+        // 1. Validasi data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
+
+        // 2. Buat pengguna baru di database
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        
+        // 3. Login otomatis setelah registrasi
+        Auth::login($user);
+
+        // 4. Arahkan pengguna ke halaman dashboard
+        return redirect()->route('dashboard');
+    }
+
+    // --- Akhir Tambahan ---
 
     public function logout(Request $request)
     {

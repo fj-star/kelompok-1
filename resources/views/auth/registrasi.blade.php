@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Registrasi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,8 +20,8 @@
             margin: 0;
         }
 
-        /* Container utama untuk form login */
-        .login-container {
+        /* Container utama untuk form registrasi */
+        .register-container {
             background-color: #fff;
             padding: 2.5rem;
             border-radius: 12px;
@@ -33,7 +33,7 @@
         }
 
         /* Judul form */
-        .login-form h2 {
+        .register-form h2 {
             color: #333;
             margin-bottom: 2rem;
             font-weight: 600;
@@ -69,8 +69,8 @@
         }
 
         .input-group input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            border-color: #28a745; /* Warna hijau untuk fokus di halaman regis */
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
         }
 
         .input-group label {
@@ -90,16 +90,16 @@
             top: 0;
             transform: translateY(-50%);
             font-size: 0.75rem;
-            color: #007bff;
+            color: #28a745;
             background-color: #fff;
             padding: 0 4px;
         }
 
-        /* Tombol login */
-        .login-button {
+        /* Tombol registrasi */
+        .register-button {
             width: 100%;
             padding: 1rem;
-            background-color: #007bff;
+            background-color: #28a745;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -109,43 +109,48 @@
             transition: background-color 0.3s ease, transform 0.1s ease;
         }
 
-        .login-button:hover {
-            background-color: #0056b3;
+        .register-button:hover {
+            background-color: #218838;
         }
 
-        .login-button:active {
+        .register-button:active {
             transform: scale(0.99);
         }
 
-        /* Link pendaftaran */
-        .register-link {
+        /* Link login */
+        .login-link {
             margin-top: 1.5rem;
             font-size: 0.9rem;
             color: #555;
         }
 
-        .register-link a {
-            color: #007bff;
+        .login-link a {
+            color: #28a745;
             text-decoration: none;
             font-weight: 500;
         }
 
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <form class="login-form" action="{{ route('login.post') }}" method="POST">
+    <div class="register-container">
+        <form class="register-form" action="{{ route('register.post') }}" method="POST">
             @csrf
-            <h2>Login</h2>
+            <h2>Buat Akun Baru</h2>
             
             @if ($errors->any())
                 <div class="error-message">
                     {{ $errors->first() }}
                 </div>
             @endif
+            
+            <div class="input-group">
+                <input type="text" id="name" name="name" placeholder=" " value="{{ old('name') }}" required>
+                <label for="name">Nama Lengkap</label>
+            </div>
 
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder=" " value="{{ old('email') }}" required>
@@ -157,8 +162,8 @@
                 <label for="password">Password</label>
             </div>
             
-            <button type="submit" class="login-button">Login</button>
-            <p class="register-link">Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
+            <button type="submit" class="register-button">Daftar</button>
+            <p class="login-link">Sudah punya akun? <a href="{{ route('login') }}">Login di sini</a></p>
         </form>
     </div>
 </body>
