@@ -6,7 +6,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
-use App\Http\Controllers\MapelController;
+use App\Http\Controllers\MapelController;      
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Models\Siswa;
