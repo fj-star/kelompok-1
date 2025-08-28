@@ -1,4 +1,4 @@
-@extends('template.layout')
+@extends('layouts.app')
 @section('title', 'Data Siswa')
 
 @section('content')
@@ -21,7 +21,7 @@
             <div class="table-responsive">
                 <table id ="example" class="table table-bordered table-hover align-middle">
                     <thead class="table-light">
-                        <tr>
+                        <tr> 
                             <th style="width: 50px;">No</th>
                             <th>Nama</th>
                             <th>Email</th>
